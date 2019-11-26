@@ -11,13 +11,10 @@ import Foundation
 struct Company: Codable {
     let id: String
     let name: String
-    let logo: String
+    let logo: URL?
     let website: URL?
     let description: String?
     let members: [Member]?
-    
-    var favorite: Bool = false
-    var following: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id          = "_id"

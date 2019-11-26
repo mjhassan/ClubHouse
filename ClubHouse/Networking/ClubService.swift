@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import Haneke
 
 enum ClubAPI {
     case companies(source: String)
     
-    private static var baseURL = URLComponents(string: "https://next.json-generator.com/api")
+    private static var baseURL = URLComponents(string: "https://next.json-generator.com")
     
     var url: URL? {
         switch self {
         case .companies(let source):
-            ClubAPI.baseURL?.path = "/json/get/\(source)"
+            ClubAPI.baseURL?.path = "/api/json/get/\(source)"
             
             guard let _url = ClubAPI.baseURL?.url else { return nil }
             return _url
@@ -29,13 +30,28 @@ final class ClubService: ServiceProtocol {
     
     typealias callbackClosure = (Result<[Company], CodableError>) -> Void
     
-    func getCompanies(_ completion: @escaping callbackClosure) {
+    func getCompanies(reload: Bool, _ completion: @escaping callbackClosure) {
         let source = "Vk-LhK44U"
         guard let url = ClubAPI.companies(source: source).url else {
             completion(.failure(.invalidURL(source)))
             return
         }
         
+        if reload {
+            download(from: url, completion)
+            return
+        }
+        
+        Shared.dataCache.fetch(key: url.absoluteString)
+            .onSuccess { [weak self] data in
+                self?.decode(data, completion)
+            }
+            .onFailure { [weak self] _ in
+                self?.download(from: url, completion)
+            }
+    }
+    
+    private func download(from url: URL, _ completion: @escaping callbackClosure) {
         let newsRequest = URLRequest(url: url)
         let session = URLSession.shared
         
@@ -46,6 +62,7 @@ final class ClubService: ServiceProtocol {
             }
             
             self?.decode(data, completion)
+            Shared.dataCache.set(value: data, key: url.absoluteString)
         }.resume()
     }
     
@@ -54,6 +71,10 @@ final class ClubService: ServiceProtocol {
             let companies =  try JSONDecoder().decode([Company].self, from: data)
             completion(.success(companies))
         } catch {
+            #if DEBUG
+            print(error)
+            #endif
+            
             completion(.failure(.custom(error.localizedDescription)))
         }
     }

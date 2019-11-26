@@ -12,14 +12,16 @@ protocol CompanyViewModelProtocol {
     var companyCount: Int { get }
     var filter: String { get set }
     
-    init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol)
+    init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol, store: StoreProtocol)
     
-    func fetchData()
+    func fetchData(force: Bool)
     func company(at index: Int) -> Company?
 }
 
 extension CompanyViewModelProtocol {
     init(bind delegate: CompanyViewControllerDelegate?) {
-        self.init(bind: delegate, service: ClubService.shared)
+        self.init(bind: delegate, service: ClubService.shared, store: Store.shared)
     }
+    
+    func fetchData() { fetchData(force: false) }
 }

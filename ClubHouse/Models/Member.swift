@@ -8,20 +8,19 @@
 
 import Foundation
 
-struct Member: Codable {
+class Member: Codable {
     let id: String
     let name: name
     let age: Int
     let email: String
     let phone: String
-    var favorite: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id         = "_id"
         case age, name, email, phone
     }
     
-    struct name: Codable {
+    class name: Codable {
         let first: String
         let last: String
         

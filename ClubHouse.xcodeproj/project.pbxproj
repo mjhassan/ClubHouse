@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0899628B238D883A0035A15D /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628A238D883A0035A15D /* StoreProtocol.swift */; };
+		0899628D238D88F20035A15D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628C238D88F20035A15D /* Store.swift */; };
+		08996290238D8AB10035A15D /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */; };
+		08996298238D95C90035A15D /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08996296238D95C80035A15D /* SVProgressHUD.framework */; };
+		08996299238D95C90035A15D /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08996296238D95C80035A15D /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0899629A238D95C90035A15D /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08996297238D95C90035A15D /* Haneke.framework */; };
+		0899629B238D95C90035A15D /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08996297238D95C90035A15D /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0899629E238DA9820035A15D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899629D238DA9820035A15D /* ShadowView.swift */; };
+		08E7063F238D66F300FB93A9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E7063E238D66F300FB93A9 /* Utilities.swift */; };
+		08E70642238D687F00FB93A9 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E70641238D687F00FB93A9 /* CompanyCell.swift */; };
 		46173AC3238D25E600A49C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AC2238D25E600A49C53 /* AppDelegate.swift */; };
 		46173AC7238D25E600A49C53 /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AC6238D25E600A49C53 /* CompanyViewController.swift */; };
 		46173ACA238D25E600A49C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46173AC8238D25E600A49C53 /* Main.storyboard */; };
-		46173ACD238D25E600A49C53 /* ClubHouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46173ACB238D25E600A49C53 /* ClubHouse.xcdatamodeld */; };
 		46173ACF238D25E700A49C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46173ACE238D25E700A49C53 /* Assets.xcassets */; };
 		46173AD2238D25E700A49C53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46173AD0238D25E700A49C53 /* LaunchScreen.storyboard */; };
 		46173ADD238D25E700A49C53 /* CompanyViewProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */; };
@@ -46,12 +55,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0899629C238D95C90035A15D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0899629B238D95C90035A15D /* Haneke.framework in Embed Frameworks */,
+				08996299238D95C90035A15D /* SVProgressHUD.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0899628A238D883A0035A15D /* StoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
+		0899628C238D88F20035A15D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		08996292238D8D990035A15D /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		08996296238D95C80035A15D /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		08996297238D95C90035A15D /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
+		0899629D238DA9820035A15D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		08E7063E238D66F300FB93A9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		08E70641238D687F00FB93A9 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		46173ABF238D25E600A49C53 /* ClubHouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46173AC2238D25E600A49C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46173AC6238D25E600A49C53 /* CompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
 		46173AC9238D25E600A49C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		46173ACC238D25E600A49C53 /* ClubHouse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClubHouse.xcdatamodel; sourceTree = "<group>"; };
 		46173ACE238D25E700A49C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46173AD1238D25E700A49C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46173AD3238D25E700A49C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0899629A238D95C90035A15D /* Haneke.framework in Frameworks */,
+				08996298238D95C90035A15D /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,11 +134,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0899628E238D8A930035A15D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		08996291238D8D990035A15D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08996297238D95C90035A15D /* Haneke.framework */,
+				08996296238D95C80035A15D /* SVProgressHUD.framework */,
+				08996292238D8D990035A15D /* Kingfisher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		08E7063D238D65A600FB93A9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0899628E238D8A930035A15D /* Extensions */,
+				08E7063E238D66F300FB93A9 /* Utilities.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		08E70640238D685400FB93A9 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				08E70641238D687F00FB93A9 /* CompanyCell.swift */,
+				0899629D238DA9820035A15D /* ShadowView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		46173AB6238D25E600A49C53 = {
@@ -114,6 +177,7 @@
 				46173ADB238D25E700A49C53 /* ClubHouseTests */,
 				46173AE6238D25E700A49C53 /* ClubHouseUITests */,
 				46173AC0238D25E600A49C53 /* Products */,
+				08996291238D8D990035A15D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,6 +237,7 @@
 		46173AF6238D272500A49C53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				08E70640238D685400FB93A9 /* Custom */,
 				46173AFA238D275B00A49C53 /* Storyboards */,
 				46173AF9238D275200A49C53 /* ViewControllers */,
 			);
@@ -193,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				46173B08238D338000A49C53 /* CompanyViewModel.swift */,
+				0899628C238D88F20035A15D /* Store.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -218,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				46173ACE238D25E700A49C53 /* Assets.xcassets */,
-				46173ACB238D25E600A49C53 /* ClubHouse.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -229,6 +294,7 @@
 				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
 				46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */,
 				46173B0C238D340D00A49C53 /* CompanyViewControllerDelegate.swift */,
+				0899628A238D883A0035A15D /* StoreProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -262,6 +328,7 @@
 				46173ABB238D25E600A49C53 /* Sources */,
 				46173ABC238D25E600A49C53 /* Frameworks */,
 				46173ABD238D25E600A49C53 /* Resources */,
+				0899629C238D95C90035A15D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -385,16 +452,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				46173B09238D338000A49C53 /* CompanyViewModel.swift in Sources */,
-				46173ACD238D25E600A49C53 /* ClubHouse.xcdatamodeld in Sources */,
 				46173B0B238D33B200A49C53 /* CompanyViewModelProtocol.swift in Sources */,
 				46173AC7238D25E600A49C53 /* CompanyViewController.swift in Sources */,
 				46173AC3238D25E600A49C53 /* AppDelegate.swift in Sources */,
 				46173B01238D292500A49C53 /* Company.swift in Sources */,
+				08E7063F238D66F300FB93A9 /* Utilities.swift in Sources */,
 				46173B05238D298F00A49C53 /* ClubService.swift in Sources */,
+				0899628D238D88F20035A15D /* Store.swift in Sources */,
 				46173AFF238D28E100A49C53 /* ServiceProtocol.swift in Sources */,
+				08E70642238D687F00FB93A9 /* CompanyCell.swift in Sources */,
+				08996290238D8AB10035A15D /* UserDefaultsExtension.swift in Sources */,
 				46173B0D238D340D00A49C53 /* CompanyViewControllerDelegate.swift in Sources */,
+				0899629E238DA9820035A15D /* ShadowView.swift in Sources */,
 				46173B03238D296000A49C53 /* CodableError.swift in Sources */,
 				46173B07238D302100A49C53 /* Member.swift in Sources */,
+				0899628B238D883A0035A15D /* StoreProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +644,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ClubHouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,6 +666,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ClubHouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -610,7 +690,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
 				INFOPLIST_FILE = ClubHouseTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -632,7 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
 				INFOPLIST_FILE = ClubHouseTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -726,19 +806,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		46173ACB238D25E600A49C53 /* ClubHouse.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				46173ACC238D25E600A49C53 /* ClubHouse.xcdatamodel */,
-			);
-			currentVersion = 46173ACC238D25E600A49C53 /* ClubHouse.xcdatamodel */;
-			path = ClubHouse.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 46173AB7238D25E600A49C53 /* Project object */;
 }

@@ -9,9 +9,9 @@
 import Foundation
 
 class CompanyViewModel: CompanyViewModelProtocol {
-    
     private let delegate: CompanyViewControllerDelegate?
     private let service: ServiceProtocol!
+    private let store: StoreProtocol!
     
     private var companies: [Company] = []
     private var list: [Company] = []
@@ -26,15 +26,16 @@ class CompanyViewModel: CompanyViewModelProtocol {
         return list.count
     }
     
-    required init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol) {
+    required init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol, store: StoreProtocol) {
         self.delegate = delegate
         self.service = service
+        self.store = store
     }
     
-    func fetchData() {
+    func fetchData(force: Bool = false) {
         delegate?.willStartFetchingData()
         
-        service.getCompanies { [weak self] result in
+        service.getCompanies(reload: force) { [weak self] result in
             switch result {
             case .success(let _companies):
                 self?.companies = _companies
