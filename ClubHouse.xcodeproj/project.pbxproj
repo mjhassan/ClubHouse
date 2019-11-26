@@ -8,13 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		46173AC3238D25E600A49C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AC2238D25E600A49C53 /* AppDelegate.swift */; };
-		46173AC7238D25E600A49C53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AC6238D25E600A49C53 /* ViewController.swift */; };
+		46173AC7238D25E600A49C53 /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AC6238D25E600A49C53 /* CompanyViewController.swift */; };
 		46173ACA238D25E600A49C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46173AC8238D25E600A49C53 /* Main.storyboard */; };
 		46173ACD238D25E600A49C53 /* ClubHouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46173ACB238D25E600A49C53 /* ClubHouse.xcdatamodeld */; };
 		46173ACF238D25E700A49C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46173ACE238D25E700A49C53 /* Assets.xcassets */; };
 		46173AD2238D25E700A49C53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46173AD0238D25E700A49C53 /* LaunchScreen.storyboard */; };
-		46173ADD238D25E700A49C53 /* ClubHouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173ADC238D25E700A49C53 /* ClubHouseTests.swift */; };
+		46173ADD238D25E700A49C53 /* CompanyViewProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */; };
 		46173AE8238D25E700A49C53 /* ClubHouseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AE7238D25E700A49C53 /* ClubHouseUITests.swift */; };
+		46173AFF238D28E100A49C53 /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173AFE238D28E100A49C53 /* ServiceProtocol.swift */; };
+		46173B01238D292500A49C53 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B00238D292500A49C53 /* Company.swift */; };
+		46173B03238D296000A49C53 /* CodableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B02238D296000A49C53 /* CodableError.swift */; };
+		46173B05238D298F00A49C53 /* ClubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B04238D298F00A49C53 /* ClubService.swift */; };
+		46173B07238D302100A49C53 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B06238D302100A49C53 /* Member.swift */; };
+		46173B09238D338000A49C53 /* CompanyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B08238D338000A49C53 /* CompanyViewModel.swift */; };
+		46173B0B238D33B200A49C53 /* CompanyViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */; };
+		46173B0D238D340D00A49C53 /* CompanyViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B0C238D340D00A49C53 /* CompanyViewControllerDelegate.swift */; };
+		46173B0F238D3B6800A49C53 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 46173B0E238D3B6800A49C53 /* data.json */; };
+		46173B11238D3B9000A49C53 /* MockClubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B10238D3B9000A49C53 /* MockClubService.swift */; };
+		46173B13238D3C3D00A49C53 /* MockCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */; };
+		46173B16238D3E2600A49C53 /* CompanyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B15238D3E2600A49C53 /* CompanyExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,18 +49,30 @@
 /* Begin PBXFileReference section */
 		46173ABF238D25E600A49C53 /* ClubHouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46173AC2238D25E600A49C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		46173AC6238D25E600A49C53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		46173AC6238D25E600A49C53 /* CompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
 		46173AC9238D25E600A49C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46173ACC238D25E600A49C53 /* ClubHouse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClubHouse.xcdatamodel; sourceTree = "<group>"; };
 		46173ACE238D25E700A49C53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46173AD1238D25E700A49C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46173AD3238D25E700A49C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46173AD8238D25E700A49C53 /* ClubHouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubHouseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46173ADC238D25E700A49C53 /* ClubHouseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubHouseTests.swift; sourceTree = "<group>"; };
+		46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewProtocolTests.swift; sourceTree = "<group>"; };
 		46173ADE238D25E700A49C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46173AE3238D25E700A49C53 /* ClubHouseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubHouseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46173AE7238D25E700A49C53 /* ClubHouseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubHouseUITests.swift; sourceTree = "<group>"; };
 		46173AE9238D25E700A49C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46173AFE238D28E100A49C53 /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
+		46173B00238D292500A49C53 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		46173B02238D296000A49C53 /* CodableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableError.swift; sourceTree = "<group>"; };
+		46173B04238D298F00A49C53 /* ClubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubService.swift; sourceTree = "<group>"; };
+		46173B06238D302100A49C53 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		46173B08238D338000A49C53 /* CompanyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModel.swift; sourceTree = "<group>"; };
+		46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModelProtocol.swift; sourceTree = "<group>"; };
+		46173B0C238D340D00A49C53 /* CompanyViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewControllerDelegate.swift; sourceTree = "<group>"; };
+		46173B0E238D3B6800A49C53 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		46173B10238D3B9000A49C53 /* MockClubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClubService.swift; sourceTree = "<group>"; };
+		46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCompanyViewController.swift; sourceTree = "<group>"; };
+		46173B15238D3E2600A49C53 /* CompanyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +100,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08E7063D238D65A600FB93A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		46173AB6238D25E600A49C53 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +130,9 @@
 		46173AC1238D25E600A49C53 /* ClubHouse */ = {
 			isa = PBXGroup;
 			children = (
+				08E7063D238D65A600FB93A9 /* Helpers */,
+				46173AFD238D28BC00A49C53 /* Networking */,
+				46173AFC238D28AA00A49C53 /* Protocols */,
 				46173AFB238D277900A49C53 /* Resources */,
 				46173AF8238D274200A49C53 /* ViewModels */,
 				46173AF7238D273400A49C53 /* Models */,
@@ -111,7 +145,8 @@
 		46173ADB238D25E700A49C53 /* ClubHouseTests */ = {
 			isa = PBXGroup;
 			children = (
-				46173ADC238D25E700A49C53 /* ClubHouseTests.swift */,
+				46173B14238D3C9200A49C53 /* CompanyView */,
+				46173B0E238D3B6800A49C53 /* data.json */,
 				46173ADE238D25E700A49C53 /* Info.plist */,
 			);
 			path = ClubHouseTests;
@@ -147,6 +182,9 @@
 		46173AF7238D273400A49C53 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				46173B00238D292500A49C53 /* Company.swift */,
+				46173B02238D296000A49C53 /* CodableError.swift */,
+				46173B06238D302100A49C53 /* Member.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -154,6 +192,7 @@
 		46173AF8238D274200A49C53 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				46173B08238D338000A49C53 /* CompanyViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -161,7 +200,7 @@
 		46173AF9238D275200A49C53 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				46173AC6238D25E600A49C53 /* ViewController.swift */,
+				46173AC6238D25E600A49C53 /* CompanyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -182,6 +221,35 @@
 				46173ACB238D25E600A49C53 /* ClubHouse.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		46173AFC238D28AA00A49C53 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
+				46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */,
+				46173B0C238D340D00A49C53 /* CompanyViewControllerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		46173AFD238D28BC00A49C53 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				46173B04238D298F00A49C53 /* ClubService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		46173B14238D3C9200A49C53 /* CompanyView */ = {
+			isa = PBXGroup;
+			children = (
+				46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */,
+				46173B10238D3B9000A49C53 /* MockClubService.swift */,
+				46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */,
+				46173B15238D3E2600A49C53 /* CompanyExtension.swift */,
+			);
+			path = CompanyView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46173B0F238D3B6800A49C53 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,9 +384,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46173B09238D338000A49C53 /* CompanyViewModel.swift in Sources */,
 				46173ACD238D25E600A49C53 /* ClubHouse.xcdatamodeld in Sources */,
-				46173AC7238D25E600A49C53 /* ViewController.swift in Sources */,
+				46173B0B238D33B200A49C53 /* CompanyViewModelProtocol.swift in Sources */,
+				46173AC7238D25E600A49C53 /* CompanyViewController.swift in Sources */,
 				46173AC3238D25E600A49C53 /* AppDelegate.swift in Sources */,
+				46173B01238D292500A49C53 /* Company.swift in Sources */,
+				46173B05238D298F00A49C53 /* ClubService.swift in Sources */,
+				46173AFF238D28E100A49C53 /* ServiceProtocol.swift in Sources */,
+				46173B0D238D340D00A49C53 /* CompanyViewControllerDelegate.swift in Sources */,
+				46173B03238D296000A49C53 /* CodableError.swift in Sources */,
+				46173B07238D302100A49C53 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +402,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46173ADD238D25E700A49C53 /* ClubHouseTests.swift in Sources */,
+				46173B13238D3C3D00A49C53 /* MockCompanyViewController.swift in Sources */,
+				46173B16238D3E2600A49C53 /* CompanyExtension.swift in Sources */,
+				46173ADD238D25E700A49C53 /* CompanyViewProtocolTests.swift in Sources */,
+				46173B11238D3B9000A49C53 /* MockClubService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
