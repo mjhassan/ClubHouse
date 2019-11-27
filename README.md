@@ -8,7 +8,7 @@ This is a project created to demonstrate several skills. This is a reactive func
 | **Development SDK**  |  **iOS 13.2** |
 | **Minimum supported SDK**  |  **iOS 11.0**  |
 | **Language**  | **Swift 5.1.2**  |
-|  **Cocoapod** | **0.34.0**  |
+|  **Carthage** | **0.34.0**  |
 | **Supported Devices** | **Universal** |
 | **Orientation Support** | **Universal** |
 | **Aknowledgement** | [Haneke](https://github.com/Haneke/Haneke), [PopoverKit](https://github.com/ZionChang/PopoverKit), [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD), [RxSwift](https://github.com/ReactiveX/RxSwift)|
