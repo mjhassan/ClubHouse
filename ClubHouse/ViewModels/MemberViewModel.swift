@@ -29,6 +29,8 @@ class MemberViewModel: MemberViewModelProtocol {
         self.company = company
         self.members.accept(company.members ?? [])
         
+        title.accept(company.name)
+        
         Observable.combineLatest(query, sortBy)
             .asObservable()
             .subscribe(onNext: { [weak self] (txt, sort)in

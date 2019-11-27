@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Company View Controller-->
+        <!--Club House-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CompanyViewController" customModule="ClubHouse" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Tme-6C-kb5"/>
+                    <navigationItem key="navigationItem" title="Club House" id="Tme-6C-kb5"/>
                     <connections>
                         <outlet property="_tableView" destination="ntB-iT-KFn" id="OGQ-hK-N32"/>
                         <outlet property="searchBar" destination="p0j-55-mcr" id="Yha-GR-Yse"/>
