@@ -26,7 +26,7 @@ This is a project created to demonstrate several skills.
     - favorites and follows persistence 
 - MVVM architectural pattern is used to implement the project. It is convenient for small project to ensure unit test.
 - The app will fetch the json for the first time from provided url and will cache it, until you pull to refresh the table.
-- There are two 3rd party libraries, Haneke, PopoverKit, and SVProgressHUD, intergrated using carthage to demonstrate 3rd party integration capability. I'm comfortable with cocoapod, too.
+- There are some 3rd party libraries, Haneke, PopoverKit, and SVProgressHUD, intergrated using carthage to demonstrate 3rd party integration capability. I'm comfortable with cocoapods, too.
 - Unit tests are written to cover the logic behind two view controllers.
 
 ## Credit
