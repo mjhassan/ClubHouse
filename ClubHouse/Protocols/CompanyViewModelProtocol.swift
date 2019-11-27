@@ -7,21 +7,27 @@
 //
 
 import Foundation
+import RxRelay
+import RxSwift
 
 protocol CompanyViewModelProtocol {
+    var list: BehaviorRelay<[Company]> { get }
+    var query: BehaviorRelay<String> { get }
+    var sortBy: BehaviorRelay<SortOptions> { get set }
+    var loading:PublishSubject<Bool> { get }
     var companyCount: Int { get }
-    var filter: String { get set }
-    var sortBy: SortOptions { get set }
+    var error: PublishSubject<String> { get }
+    var disposeBag: DisposeBag { get }
     
-    init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol, store: StoreProtocol)
+    init(service: ServiceProtocol, store: StoreProtocol)
     
     func fetchData(force: Bool)
     func company(at index: Int) -> Company?
 }
 
 extension CompanyViewModelProtocol {
-    init(bind delegate: CompanyViewControllerDelegate?) {
-        self.init(bind: delegate, service: ClubService.shared, store: Store.shared)
+    init() {
+        self.init(service: ClubService.shared, store: Store.shared)
     }
     
     func fetchData() { fetchData(force: false) }

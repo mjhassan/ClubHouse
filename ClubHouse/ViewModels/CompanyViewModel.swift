@@ -7,65 +7,67 @@
 //
 
 import Foundation
+import RxSwift
+import RxRelay
 
 class CompanyViewModel: CompanyViewModelProtocol {
-    private let delegate: CompanyViewControllerDelegate?
     private let service: ServiceProtocol!
     private let store: StoreProtocol!
     
-    private var companies: [Company] = []
-    private var list: [Company] = []
-    
-    public var filter: String = "" {
-        didSet {
-            filterUser()
-        }
-    }
-    
-    public var sortBy: SortOptions = .none {
-        didSet {
-            filterUser()
-        }
-    }
+    private let companies: BehaviorRelay<[Company]> = BehaviorRelay(value: [])
+    let list: BehaviorRelay<[Company]>              = BehaviorRelay(value: [])
+    let query: BehaviorRelay<String>                = BehaviorRelay(value: "")
+    var sortBy: BehaviorRelay<SortOptions>          = BehaviorRelay(value: .none)
+    let loading:PublishSubject<Bool>                = PublishSubject<Bool>()
+    let error: PublishSubject<String>               = PublishSubject<String>()
+    let disposeBag                                  = DisposeBag()
     
     public var companyCount: Int {
-        return list.count
+        return list.value.count
     }
     
-    required init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol, store: StoreProtocol) {
-        self.delegate = delegate
+    required init(service: ServiceProtocol, store: StoreProtocol) {
         self.service = service
         self.store = store
+        
+        Observable.combineLatest(query, sortBy)
+            .asObservable()
+            .subscribe(onNext: { [weak self] (txt, sort)in
+                self?.filterUser(txt, sort)
+            }).disposed(by: disposeBag)
     }
     
     func fetchData(force: Bool = false) {
-        delegate?.willStartFetchingData()
+        loading.onNext(true)
         
         service.getCompanies(reload: force) { [weak self] result in
+            guard let _ws = self else { return }
+            
+            _ws.loading.onNext(false)
+            
             switch result {
             case .success(let _companies):
-                self?.companies = _companies
-                self?.filter = ""
+                _ws.companies.accept(_companies)
+                _ws.query.accept("")
             case .failure(let err):
-                self?.delegate?.didFailedWithError(err.errorDescription ?? "Unknown error occured")
+                _ws.error.onNext(err.errorDescription ?? "Unknown error occured")
             }
         }
     }
     
     func company(at index: Int) -> Company? {
-        return (index >= 0 && index < companyCount) ? list[index]:nil
+        return (index >= 0 && index < companyCount) ? list.value[index]:nil
     }
     
-    private func filterUser() {
-        list.removeAll()
-        list = filter.isEmpty ? companies:companies.filter { $0.name.lowercased().contains(filter.lowercased()) }
+    private func filterUser(_ txt: String = "", _ sort: SortOptions = .none) {
+        var result = txt.isEmpty ? companies.value:companies.value.filter { $0.name.lowercased().contains(txt.lowercased()) }
         
-        if sortBy == .nameAscending {
-            list.sort(by: { $0.name <= $1.name })
-        } else if sortBy == .nameDescending {
-            list.sort(by: { $0.name > $1.name })
+        if sortBy.value == .nameAscending {
+            result.sort(by: { $0.name <= $1.name })
+        } else if sortBy.value == .nameDescending {
+            result.sort(by: { $0.name > $1.name })
         }
         
-        self.delegate?.didFinishFetchingData()
+        list.accept(result)
     }
 }

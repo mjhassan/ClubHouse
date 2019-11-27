@@ -1,3 +1,4 @@
 github "Haneke/HanekeSwift"
 github "SVProgressHUD/SVProgressHUD"
 github "ZionChang/PopoverKit"
+github "ReactiveX/RxSwift" ~> 5.0

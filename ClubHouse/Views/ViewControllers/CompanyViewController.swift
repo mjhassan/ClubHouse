@@ -9,13 +9,16 @@
 import UIKit
 import SVProgressHUD
 import PopoverKit
+import RxSwift
+import RxCocoa
 
 class CompanyViewController: UIViewController {
 
     @IBOutlet weak var _tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private lazy var viewModel: CompanyViewModelProtocol = {
-        let _viewModel = CompanyViewModel(bind: self)
+        let _viewModel = CompanyViewModel()
         return _viewModel
     }()
     
@@ -62,26 +65,14 @@ class CompanyViewController: UIViewController {
         return refresh
     }()
     
-    private var loading: Bool = false {
-        didSet {
-            invoke(onThread: DispatchQueue.main) { [weak self] in
-                guard let _weakSelf = self else { return }
-                
-                if !SVProgressHUD.isVisible() && _weakSelf.loading == false { return }
-                
-                _weakSelf.loading ? SVProgressHUD.show():SVProgressHUD.dismiss()
-                _weakSelf.refreshControl.endRefreshing()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = _weakSelf.loading
-            }
-        }
-    }
-    
     private let segue_id = "MemberViewControllerSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
+        bindViews()
+        
         viewModel.fetchData()
     }
     
@@ -101,15 +92,9 @@ fileprivate extension CompanyViewController {
     }
     
     @objc func relaodData() {
-        guard loading == false else { return }
-        
         invoke(after: 0.1) { [unowned self] in
             self.viewModel.fetchData(force: true)
         }
-    }
-    
-    @objc func search(_ txt: String) {
-        viewModel.filter = txt
     }
     
     @objc func showSortOptions(_ gesture: UITapGestureRecognizer) {
@@ -117,65 +102,63 @@ fileprivate extension CompanyViewController {
         present(popover, animated: true, completion: nil)
     }
     
-    func showAlert(_ msg: String) {
-        let alert = UIAlertController(title: "ERROR", message: msg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
-    }
-}
-
-extension CompanyViewController: CompanyViewControllerDelegate {
-    func willStartFetchingData() {
-        loading = true
-    }
-    
-    func didFinishFetchingData() {
-        loading = false
-        invoke(onThread: DispatchQueue.main) { [unowned self] in
-            self._tableView.reloadData()
-        }
-    }
-    
-    func didFailedWithError(_ description: String) {
-        loading = false
-        invoke(onThread: DispatchQueue.main) { [unowned self] in
-            self.showAlert(description)
-        }
-    }
-}
-
-extension CompanyViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.companyCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let companyCell = tableView.dequeueReusableCell(withIdentifier: CompanyCell.identifier, for: indexPath) as! CompanyCell
-        companyCell.company = viewModel.company(at: indexPath.item)
-        return companyCell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func bindViews() {
+        // Progress hud
+        viewModel.loading
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] loading in
+                self?.refreshControl.endRefreshing()
+                loading ? SVProgressHUD.show():SVProgressHUD.dismiss()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = loading
+            }).disposed(by: viewModel.disposeBag)
         
-        guard let company = viewModel.company(at: indexPath.item) else {
-            return
-        }
+        // table view cell binding
+        viewModel.list
+            .bind(to: _tableView.rx.items(cellIdentifier: CompanyCell.identifier)) { _, company, cell in
+                guard let companyCell = cell as? CompanyCell else { return }
+                companyCell.company = company
+        }.disposed(by: viewModel.disposeBag)
         
-        performSegue(withIdentifier: segue_id, sender: company)
-    }
-}
-
-extension CompanyViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: textSearched)
-        self.perform(#selector(search), with: textSearched, afterDelay: 0.5)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        // table view cell selection
+        _tableView.rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let _ws = self else { return }
+                _ws._tableView.deselectRow(at: indexPath, animated: true)
+                
+                guard let company = _ws.viewModel.company(at: indexPath.item) else { return }
+                _ws.performSegue(withIdentifier: _ws.segue_id, sender: company)
+        }).disposed(by: viewModel.disposeBag)
+        
+        // search bar filter
+        searchBar.rx
+            .text
+            .orEmpty
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind(to: viewModel.query)
+            .disposed(by: viewModel.disposeBag)
+        
+        // search bar done clicked
+        searchBar.rx
+            .searchButtonClicked
+            .subscribe { [weak self] clicked in
+                self?.searchBar.resignFirstResponder()
+        }.disposed(by: viewModel.disposeBag)
+        
+        // error binding
+        viewModel.error
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] msg in
+                guard let _ws = self else { return }
+                
+                let alert = UIAlertController(title: "ERROR", message: msg, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    alert.dismiss(animated: true, completion: nil)
+                }))
+                _ws.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: viewModel.disposeBag)
     }
 }
 
@@ -183,13 +166,15 @@ extension CompanyViewController: UISearchBarDelegate {
 extension CompanyViewController: PopoverTableViewControllerDelegate {
     func didSelectRow(at indexPath: IndexPath, in vc: PopoverTableViewController) {
         popover.dismiss(animated: true) { [weak self] in
+            guard let _ws = self else { return }
+            
             let selected = SortOptions.company[indexPath.item]
-            guard selected != self?.viewModel.sortBy else {
+            guard selected != _ws.viewModel.sortBy.value else {
                 return
             }
             
-            self?.sortLabel.text = "\(selected.caption)"
-            self?.viewModel.sortBy = selected
+            _ws.sortLabel.text = "\(selected.caption)"
+            _ws.viewModel.sortBy.accept(selected)
         }
     }
 }
