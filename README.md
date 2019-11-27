@@ -1,5 +1,5 @@
 # ClubHouse
-This is a project created to demonstrate several skills.
+This is a project created to demonstrate several skills. This is a reactive functional implementation using [RxSwift](https://github.com/mjhassan/ClubHouse/tree/RxSwift).
 
 ## Project Specification
 | Description  | Specification  |
@@ -11,7 +11,7 @@ This is a project created to demonstrate several skills.
 |  **Cocoapod** | **0.34.0**  |
 | **Supported Devices** | **Universal** |
 | **Orientation Support** | **Universal** |
-| **Aknowledgement** | [Haneke](https://github.com/Haneke/Haneke), [PopoverKit](https://github.com/ZionChang/PopoverKit), [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)|
+| **Aknowledgement** | [Haneke](https://github.com/Haneke/Haneke), [PopoverKit](https://github.com/ZionChang/PopoverKit), [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD), [RxSwift](https://github.com/mjhassan/ClubHouse/tree/RxSwift)|
 
 ## How To Run
 - Download the project as .zip file
