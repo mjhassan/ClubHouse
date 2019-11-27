@@ -112,6 +112,13 @@ fileprivate extension CompanyViewController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = loading
             }).disposed(by: viewModel.disposeBag)
         
+        // sort button type
+        viewModel.sortBy
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] option in
+                self?.sortLabel.text = "\(option.caption)"
+            }).disposed(by: viewModel.disposeBag)
+        
         // table view cell binding
         viewModel.list
             .bind(to: _tableView.rx.items(cellIdentifier: CompanyCell.identifier)) { _, company, cell in
@@ -173,7 +180,6 @@ extension CompanyViewController: PopoverTableViewControllerDelegate {
                 return
             }
             
-            _ws.sortLabel.text = "\(selected.caption)"
             _ws.viewModel.sortBy.accept(selected)
         }
     }

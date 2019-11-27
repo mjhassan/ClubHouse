@@ -8,9 +8,13 @@
 
 import UIKit
 import PopoverKit
+import RxSwift
+import RxCocoa
 
 class MemberViewController: UITableViewController {
-
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     public var viewModel: MemberViewModelProtocol!
     
     private lazy var sortLabel: UILabel = {
@@ -54,31 +58,49 @@ class MemberViewController: UITableViewController {
         super.viewDidLoad()
         
         configureView()
-        bindPassage()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        viewModel.reloadData()
+        bindDependencies()
     }
 }
 
 fileprivate extension MemberViewController {
-    func bindPassage() {
-        viewModel.dataUpdateClosure = { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
     func configureView() {
-        title = viewModel.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: sortButton)
         tableView.tableFooterView = UIView()
     }
     
-    @objc func search(_ txt: String) {
-        viewModel.filter = txt
+    func bindDependencies() {
+        // bind title
+        viewModel.title.bind(to: self.rx.title).disposed(by: viewModel.disposeBag)
+        
+        // sort button type
+        viewModel.sortBy
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] option in
+                self?.sortLabel.text = "\(option.caption)"
+            }).disposed(by: viewModel.disposeBag)
+        
+        // table view cell binding
+        viewModel.list
+            .bind(to: tableView.rx.items(cellIdentifier: MemberCell.identifier)) { _, member, cell in
+                guard let memberCell = cell as? MemberCell else { return }
+                memberCell.member = member
+        }.disposed(by: viewModel.disposeBag)
+        
+        // search bar filter
+        searchBar.rx
+            .text
+            .orEmpty
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind(to: viewModel.query)
+            .disposed(by: viewModel.disposeBag)
+        
+        // search bar done clicked
+        searchBar.rx
+            .searchButtonClicked
+            .subscribe { [weak self] clicked in
+                self?.searchBar.resignFirstResponder()
+        }.disposed(by: viewModel.disposeBag)
     }
     
     @objc func showSortOptions(_ gesture: UITapGestureRecognizer) {
@@ -87,42 +109,15 @@ fileprivate extension MemberViewController {
     }
 }
 
-// MARK: - Table view data source
-extension MemberViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.memberCount
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let memberCell = tableView.dequeueReusableCell(withIdentifier: MemberCell.identifier, for: indexPath) as! MemberCell
-        memberCell.member = viewModel.member(at: indexPath.item)
-        return memberCell
-    }
-}
-
-// MARK: - Search bar delegate
-extension MemberViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: textSearched)
-        self.perform(#selector(search), with: textSearched, afterDelay: 0.5)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-}
-
 // MARK: - PopoverTableViewControllerDelegate
 extension MemberViewController: PopoverTableViewControllerDelegate {
     func didSelectRow(at indexPath: IndexPath, in vc: PopoverTableViewController) {
         popover.dismiss(animated: true) { [weak self] in
             let selected = SortOptions.member[indexPath.item]
-            guard selected != self?.viewModel.sortBy else {
+            guard selected != self?.viewModel.sortBy.value else {
                 return
             }
-            
-            self?.sortLabel.text = "\(selected.caption)"
-            self?.viewModel.sortBy = selected
+            self?.viewModel.sortBy.accept(selected)
         }
     }
 }

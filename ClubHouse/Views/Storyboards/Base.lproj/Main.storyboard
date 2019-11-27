@@ -197,9 +197,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            <connections>
-                                <outlet property="delegate" destination="5j3-gc-nT3" id="pTg-nx-A8D"/>
-                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="110" id="b8V-vu-fvp" customClass="MemberCell" customModule="ClubHouse" customModuleProvider="target">
@@ -295,12 +292,11 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="5j3-gc-nT3" id="v5X-wW-Wwf"/>
-                            <outlet property="delegate" destination="5j3-gc-nT3" id="bLU-I7-oho"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="4Gc-dM-0zQ"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Am4-wc-mCr" id="hSi-jJ-ARF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOP-PH-MA0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

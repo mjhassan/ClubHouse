@@ -33,7 +33,7 @@ class CompanyViewModel: CompanyViewModelProtocol {
         Observable.combineLatest(query, sortBy)
             .asObservable()
             .subscribe(onNext: { [weak self] (txt, sort)in
-                self?.filterUser(txt, sort)
+                self?.filterCompanies(txt, sort)
             }).disposed(by: disposeBag)
     }
     
@@ -59,7 +59,7 @@ class CompanyViewModel: CompanyViewModelProtocol {
         return (index >= 0 && index < companyCount) ? list.value[index]:nil
     }
     
-    private func filterUser(_ txt: String = "", _ sort: SortOptions = .none) {
+    private func filterCompanies(_ txt: String = "", _ sort: SortOptions = .none) {
         var result = txt.isEmpty ? companies.value:companies.value.filter { $0.name.lowercased().contains(txt.lowercased()) }
         
         if sortBy.value == .nameAscending {

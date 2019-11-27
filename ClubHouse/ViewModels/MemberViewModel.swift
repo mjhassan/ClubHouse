@@ -7,68 +7,63 @@
 //
 
 import Foundation
+import RxSwift
+import RxRelay
 
 class MemberViewModel: MemberViewModelProtocol {
+    private let members: BehaviorRelay<[Member]> = BehaviorRelay(value: [])
+    
+    let list: BehaviorRelay<[Member]>      = BehaviorRelay(value: [])
+    var title: BehaviorRelay<String>        = BehaviorRelay(value: "")
+    let query: BehaviorRelay<String>        = BehaviorRelay(value: "")
+    var sortBy: BehaviorRelay<SortOptions>  = BehaviorRelay(value: .none)
+    var disposeBag: DisposeBag              = DisposeBag()
+    
     private let company: Company!
     
-    private var members: [Member] = []
-    private var list: [Member] = []
-    
-    public var dataUpdateClosure: (() -> Void)?
-    public var title: String {
-        return company.name
-    }
-    
-    public var filter: String = "" {
-        didSet {
-            filterUser()
-        }
-    }
-    
-    public var sortBy: SortOptions = .none {
-        didSet {
-            filterUser()
-        }
-    }
-    
     public var memberCount: Int {
-        return list.count
+        return list.value.count
     }
     
     required init(_ company: Company) {
         self.company = company
-        self.members = company.members ?? []
+        self.members.accept(company.members ?? [])
+        
+        Observable.combineLatest(query, sortBy)
+            .asObservable()
+            .subscribe(onNext: { [weak self] (txt, sort)in
+                self?.filterMemebers(txt, sort)
+            }).disposed(by: disposeBag)
     }
     
     func reloadData() {
-        filter = ""
+        query.accept("")
     }
     
     func member(at index: Int) -> Member? {
-        return (index >= 0 && index < memberCount) ? list[index]:nil
+        return (index >= 0 && index < memberCount) ? list.value[index]:nil
     }
     
-    private func filterUser() {
-        list.removeAll()
-        list = filter.isEmpty ? members:members.filter { $0.fullName.lowercased().contains(filter.lowercased()) || String($0.age) == filter }
+    private func filterMemebers(_ txt: String = "", _ sort: SortOptions = .none) {
+        var result = txt.isEmpty ? members.value :
+            members.value.filter { $0.fullName.lowercased().contains(txt.lowercased())
+                || String($0.age) == txt }
         
-        switch sortBy {
+        switch sortBy.value {
         case .ageAscending:
-            list.sort(by: { $0.age <= $1.age })
+            result.sort(by: { $0.age <= $1.age })
         case .ageDescending:
-            list.sort(by: { $0.age > $1.age })
+            result.sort(by: { $0.age > $1.age })
         case .nameAscending:
-            list.sort(by: { $0.fullName <= $1.fullName })
+            result.sort(by: { $0.fullName <= $1.fullName })
         case .nameDescending:
-            list.sort(by: { $0.fullName > $1.fullName })
+            result.sort(by: { $0.fullName > $1.fullName })
         default:
             #if DEBUG
-            print("Do nothing..")
+            print("Sort by: \(sortBy.value.caption)")
             #endif
         }
         
-        invoke(onThread: DispatchQueue.main) { [weak self] in
-            self?.dataUpdateClosure?()
-        }
+        list.accept(result)
     }
 }
