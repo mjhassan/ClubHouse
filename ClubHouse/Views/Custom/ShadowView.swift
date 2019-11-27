@@ -52,6 +52,14 @@ class ShadowView: UIView {
         }
     }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     //Apply params
     func updateView() {
         layer.shadowColor   = shadowColor.cgColor
