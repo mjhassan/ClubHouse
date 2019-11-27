@@ -180,9 +180,9 @@
 		08E7063D238D65A600FB93A9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0899628E238D8A930035A15D /* Extensions */,
-				08E7063E238D66F300FB93A9 /* Utilities.swift */,
 				46912ED2238E58CD0091C6E6 /* SortOptions.swift */,
+				08E7063E238D66F300FB93A9 /* Utilities.swift */,
+				0899628E238D8A930035A15D /* Extensions */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -191,8 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				08E70641238D687F00FB93A9 /* CompanyCell.swift */,
-				0899629D238DA9820035A15D /* ShadowView.swift */,
 				46912EC2238E2FAF0091C6E6 /* MemberCell.swift */,
+				0899629D238DA9820035A15D /* ShadowView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -222,13 +222,13 @@
 			isa = PBXGroup;
 			children = (
 				08E7063D238D65A600FB93A9 /* Helpers */,
+				46173AF7238D273400A49C53 /* Models */,
 				46173AFD238D28BC00A49C53 /* Networking */,
 				46173AFC238D28AA00A49C53 /* Protocols */,
 				46173AFB238D277900A49C53 /* Resources */,
-				46173AF8238D274200A49C53 /* ViewModels */,
-				46173AF7238D273400A49C53 /* Models */,
-				46173AF6238D272500A49C53 /* Views */,
 				46173AF5238D264600A49C53 /* Supporting Files */,
+				46173AF8238D274200A49C53 /* ViewModels */,
+				46173AF6238D272500A49C53 /* Views */,
 			);
 			path = ClubHouse;
 			sourceTree = "<group>";
@@ -286,8 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				46173B08238D338000A49C53 /* CompanyViewModel.swift */,
-				0899628C238D88F20035A15D /* Store.swift */,
 				46912EBE238E26ED0091C6E6 /* MemberViewModel.swift */,
+				0899628C238D88F20035A15D /* Store.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,11 +321,11 @@
 		46173AFC238D28AA00A49C53 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
-				46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */,
 				46173B0C238D340D00A49C53 /* CompanyViewControllerDelegate.swift */,
-				0899628A238D883A0035A15D /* StoreProtocol.swift */,
+				46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */,
 				46912EBC238E26D20091C6E6 /* MemberViewModelProtocol.swift */,
+				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
+				0899628A238D883A0035A15D /* StoreProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -341,10 +341,10 @@
 		46173B14238D3C9200A49C53 /* CompanyView */ = {
 			isa = PBXGroup;
 			children = (
+				46173B15238D3E2600A49C53 /* CompanyExtension.swift */,
 				46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */,
 				46173B10238D3B9000A49C53 /* MockClubService.swift */,
 				46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */,
-				46173B15238D3E2600A49C53 /* CompanyExtension.swift */,
 				46912ECB238E454E0091C6E6 /* MockStore.swift */,
 			);
 			path = CompanyView;
@@ -353,8 +353,8 @@
 		46912EC6238E42F60091C6E6 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */,
 				46912ECD238E483C0091C6E6 /* MemberExtension.swift */,
+				46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
