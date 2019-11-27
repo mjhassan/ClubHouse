@@ -15,7 +15,7 @@ class MockClubService: ServiceProtocol {
     var companies: [Company] = []
     var mockError: CodableError? = nil
     
-    func getCompanies(_ completion: @escaping (Result<[Company], CodableError>) -> Void) {
+    func getCompanies(reload: Bool, _ completion: @escaping (Result<[Company], CodableError>) -> Void) {
         // for testing errors
         if mockError != nil {
             completion(.failure(mockError!))

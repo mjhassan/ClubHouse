@@ -38,13 +38,20 @@ class CompanyViewController: UIViewController {
         }
     }
     
-    private let segue_id = "DetailViewControllerSegue"
+    private let segue_id = "MemberViewControllerSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
         viewModel.fetchData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segue_id,
+            let destination = segue.destination as? MemberViewController {
+            destination.viewModel = MemberViewModel(sender as! Company)
+        }
     }
 }
 
@@ -112,6 +119,8 @@ extension CompanyViewController: UITableViewDataSource, UITableViewDelegate {
         guard let company = viewModel.company(at: indexPath.item) else {
             return
         }
+        
+        performSegue(withIdentifier: segue_id, sender: company)
     }
 }
 

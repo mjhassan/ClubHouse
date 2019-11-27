@@ -13,11 +13,15 @@ class CompanyViewProtocolTests: XCTestCase {
     fileprivate var mockViewController: MockCompanyViewController!
     fileprivate var viewModel: CompanyViewModelProtocol!
     fileprivate var mockService: MockClubService!
+    fileprivate var mockStore: StoreProtocol!
     
     override func setUp() {
         mockViewController  = MockCompanyViewController()
         mockService         = MockClubService()
-        viewModel           = CompanyViewModel(bind: mockViewController, service: mockService)
+        mockStore           = MockStore()
+        viewModel           = CompanyViewModel(bind: mockViewController,
+                                               service: mockService,
+                                               store: mockStore)
     }
 
     override func tearDown() {
