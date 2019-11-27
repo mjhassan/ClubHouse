@@ -11,6 +11,7 @@ import Foundation
 protocol CompanyViewModelProtocol {
     var companyCount: Int { get }
     var filter: String { get set }
+    var sortBy: SortOptions { get set }
     
     init(bind delegate: CompanyViewControllerDelegate?, service: ServiceProtocol, store: StoreProtocol)
     

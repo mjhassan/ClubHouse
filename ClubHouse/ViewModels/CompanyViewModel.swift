@@ -16,7 +16,13 @@ class CompanyViewModel: CompanyViewModelProtocol {
     private var companies: [Company] = []
     private var list: [Company] = []
     
-    var filter: String = "" {
+    public var filter: String = "" {
+        didSet {
+            filterUser()
+        }
+    }
+    
+    public var sortBy: SortOptions = .none {
         didSet {
             filterUser()
         }
@@ -53,6 +59,12 @@ class CompanyViewModel: CompanyViewModelProtocol {
     private func filterUser() {
         list.removeAll()
         list = filter.isEmpty ? companies:companies.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        
+        if sortBy == .nameAscending {
+            list.sort(by: { $0.name <= $1.name })
+        } else if sortBy == .nameDescending {
+            list.sort(by: { $0.name > $1.name })
+        }
         
         self.delegate?.didFinishFetchingData()
     }

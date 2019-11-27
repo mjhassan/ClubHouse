@@ -14,6 +14,7 @@ class CompanyCell: UITableViewCell {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
     @IBOutlet weak var favoriteView: UIButton!
     @IBOutlet weak var followView: UIView!
     @IBOutlet weak var followLabel: UILabel!
@@ -25,6 +26,7 @@ class CompanyCell: UITableViewCell {
             
             companyLabel.text = _company.name
             descriptionLabel.text = _company.description
+            websiteLabel.text = _company.website?.absoluteString ?? ""
             
             if let url = _company.logo {
                 imgView.hnk_setImageFromURL(url)

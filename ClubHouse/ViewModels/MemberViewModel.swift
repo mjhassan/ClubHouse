@@ -25,6 +25,12 @@ class MemberViewModel: MemberViewModelProtocol {
         }
     }
     
+    public var sortBy: SortOptions = .none {
+        didSet {
+            filterUser()
+        }
+    }
+    
     public var memberCount: Int {
         return list.count
     }
@@ -45,6 +51,21 @@ class MemberViewModel: MemberViewModelProtocol {
     private func filterUser() {
         list.removeAll()
         list = filter.isEmpty ? members:members.filter { $0.fullName.lowercased().contains(filter.lowercased()) || String($0.age) == filter }
+        
+        switch sortBy {
+        case .ageAscending:
+            list.sort(by: { $0.age <= $1.age })
+        case .ageDescending:
+            list.sort(by: { $0.age > $1.age })
+        case .nameAscending:
+            list.sort(by: { $0.fullName <= $1.fullName })
+        case .nameDescending:
+            list.sort(by: { $0.fullName > $1.fullName })
+        default:
+            #if DEBUG
+            print("Do nothing..")
+            #endif
+        }
         
         invoke(onThread: DispatchQueue.main) { [weak self] in
             self?.dataUpdateClosure?()

@@ -15,17 +15,38 @@ class ShadowView: UIView {
             self.updateView()
         }
     }
+    
     @IBInspectable var shadowOpacity: Float = 0.5 {
         didSet {
             self.updateView()
         }
     }
+    
     @IBInspectable var shadowOffset: CGSize = CGSize(width: 3, height: 3) {
         didSet {
             self.updateView()
         }
     }
+    
     @IBInspectable var shadowRadius: CGFloat = 15.0 {
+        didSet {
+            self.updateView()
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            self.updateView()
+        }
+    }
+
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet {
+            self.updateView()
+        }
+    }
+
+    @IBInspectable var borderColor: UIColor? = nil {
         didSet {
             self.updateView()
         }
@@ -33,9 +54,14 @@ class ShadowView: UIView {
 
     //Apply params
     func updateView() {
-        self.layer.shadowColor = self.shadowColor.cgColor
-        self.layer.shadowOpacity = self.shadowOpacity
-        self.layer.shadowOffset = self.shadowOffset
-        self.layer.shadowRadius = self.shadowRadius
+        layer.shadowColor   = shadowColor.cgColor
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowOffset  = shadowOffset
+        layer.shadowRadius  = shadowRadius
+        layer.cornerRadius  = cornerRadius
+        layer.borderWidth   = borderWidth
+        layer.borderColor   = borderColor?.cgColor
+        
+        layer.masksToBounds = cornerRadius > 0
     }
 }

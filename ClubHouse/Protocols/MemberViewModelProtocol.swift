@@ -12,6 +12,7 @@ protocol MemberViewModelProtocol {
     var title: String { get }
     var filter: String { get set }
     var memberCount: Int { get }
+    var sortBy: SortOptions { get set }
     var dataUpdateClosure: (() -> Void)? { get set }
     
     init(_ company: Company)

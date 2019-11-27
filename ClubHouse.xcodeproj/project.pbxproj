@@ -44,6 +44,9 @@
 		46912EC8238E434E0091C6E6 /* MemberViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */; };
 		46912ECC238E454E0091C6E6 /* MockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912ECB238E454E0091C6E6 /* MockStore.swift */; };
 		46912ECE238E483C0091C6E6 /* MemberExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912ECD238E483C0091C6E6 /* MemberExtension.swift */; };
+		46912ED0238E52BF0091C6E6 /* PopoverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46912ECF238E52BF0091C6E6 /* PopoverKit.framework */; };
+		46912ED1238E52BF0091C6E6 /* PopoverKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46912ECF238E52BF0091C6E6 /* PopoverKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46912ED3238E58CD0091C6E6 /* SortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912ED2238E58CD0091C6E6 /* SortOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,7 @@
 			files = (
 				0899629B238D95C90035A15D /* Haneke.framework in Embed Frameworks */,
 				08996299238D95C90035A15D /* SVProgressHUD.framework in Embed Frameworks */,
+				46912ED1238E52BF0091C6E6 /* PopoverKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +125,8 @@
 		46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModelTest.swift; sourceTree = "<group>"; };
 		46912ECB238E454E0091C6E6 /* MockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStore.swift; sourceTree = "<group>"; };
 		46912ECD238E483C0091C6E6 /* MemberExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberExtension.swift; sourceTree = "<group>"; };
+		46912ECF238E52BF0091C6E6 /* PopoverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopoverKit.framework; path = Carthage/Build/iOS/PopoverKit.framework; sourceTree = "<group>"; };
+		46912ED2238E58CD0091C6E6 /* SortOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 			files = (
 				0899629A238D95C90035A15D /* Haneke.framework in Frameworks */,
 				08996298238D95C90035A15D /* SVProgressHUD.framework in Frameworks */,
+				46912ED0238E52BF0091C6E6 /* PopoverKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +169,7 @@
 		08996291238D8D990035A15D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46912ECF238E52BF0091C6E6 /* PopoverKit.framework */,
 				08996297238D95C90035A15D /* Haneke.framework */,
 				08996296238D95C80035A15D /* SVProgressHUD.framework */,
 				08996292238D8D990035A15D /* Kingfisher.framework */,
@@ -174,6 +182,7 @@
 			children = (
 				0899628E238D8A930035A15D /* Extensions */,
 				08E7063E238D66F300FB93A9 /* Utilities.swift */,
+				46912ED2238E58CD0091C6E6 /* SortOptions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				46173B0B238D33B200A49C53 /* CompanyViewModelProtocol.swift in Sources */,
 				46173AC7238D25E600A49C53 /* CompanyViewController.swift in Sources */,
 				46912EC5238E407B0091C6E6 /* StringExtensions.swift in Sources */,
+				46912ED3238E58CD0091C6E6 /* SortOptions.swift in Sources */,
 				46173AC3238D25E600A49C53 /* AppDelegate.swift in Sources */,
 				46912EBD238E26D20091C6E6 /* MemberViewModelProtocol.swift in Sources */,
 				46173B01238D292500A49C53 /* Company.swift in Sources */,
