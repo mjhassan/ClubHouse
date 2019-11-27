@@ -1,5 +1,5 @@
 # ClubHouse
-This is a project created to demonstrate several skills.
+This is a project created to demonstrate several skills. This is a protocol-oriented implementation. For reactive functional implementation check [RxSwift branch](https://github.com/mjhassan/ClubHouse/tree/RxSwift).
 
 ## Project Specification
 | Description  | Specification  |
