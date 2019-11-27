@@ -7,21 +7,13 @@
 //
 
 import XCTest
+import RxSwift
+import RxTest
 @testable import ClubHouse
 
 class MemberViewModelTest: XCTestCase {
-    fileprivate var viewModel: MemberViewModelProtocol!
     fileprivate var companies: [Company]!
     
-    override func setUp() {
-        loadData()
-        viewModel = MemberViewModel(companies[0])
-    }
-
-    override func tearDown() {
-        viewModel = nil
-    }
-
     func loadData() {
         // mocking service call
         let testBundle = Bundle(for: type(of: self))
@@ -35,70 +27,84 @@ class MemberViewModelTest: XCTestCase {
         }
     }
     
+    fileprivate var viewModel: MemberViewModelProtocol!
+    fileprivate var mockService: MockClubService!
+    fileprivate var mockStore: StoreProtocol!
+    fileprivate var scheduler: TestScheduler!
+    fileprivate var disposeBag: DisposeBag!
+    
+    override func setUp() {
+        loadData()
+        
+        mockService = MockClubService()
+        mockStore   = MockStore()
+        viewModel   = MemberViewModel(companies[0])
+        scheduler   = TestScheduler(initialClock: 0)
+        disposeBag  = DisposeBag()
+    }
+
+    override func tearDown() {
+        viewModel   = nil
+        mockService = nil
+        scheduler   = nil
+        disposeBag  = nil
+    }
+    
     func test_initialization() {
         let expectedCompany = companies[0]
-        XCTAssertEqual(viewModel.title, expectedCompany.name)
-        XCTAssertEqual(viewModel.filter.isEmpty, true)
-        XCTAssertEqual(viewModel.memberCount, 0)
-        XCTAssertNil(viewModel.dataUpdateClosure)
-        XCTAssertNil(viewModel.member(at: 0))
+        XCTAssertEqual(viewModel.query.value.isEmpty, true)
+        XCTAssertEqual(viewModel.sortBy.value, SortOptions.none)
+        XCTAssertEqual(viewModel.member(at: 0), expectedCompany.members?[0])
+        XCTAssertEqual(viewModel.title.value, expectedCompany.name)
+        
+        var onNextCalled = 0
+        var onErrorCalled = 0
+        var onCompletedCalled = 0
+        var onDisposedCalled = 0
+        
+        viewModel.title
+            .subscribe(onNext: { n in
+                    onNextCalled += 1
+                }, onError: { e in
+                    onErrorCalled += 1
+                }, onCompleted: {
+                    onCompletedCalled += 1
+                }, onDisposed: {
+                    onDisposedCalled += 1
+                })
+            .disposed(by: disposeBag)
+        
+            XCTAssertTrue(onNextCalled == 1)
+            XCTAssertTrue(onErrorCalled == 0)
+            XCTAssertTrue(onCompletedCalled == 0)
+            XCTAssertTrue(onDisposedCalled == 0)
     }
     
     func test_reloadData() {
+        viewModel.query.accept("Z")
         viewModel.reloadData()
         
         let expectedCompany = companies[0]
-        XCTAssertEqual(viewModel.title, expectedCompany.name)
-        XCTAssertEqual(viewModel.filter.isEmpty, true)
-        XCTAssertEqual(viewModel.memberCount, expectedCompany.members?.count)
-        XCTAssertNil(viewModel.dataUpdateClosure)
+        XCTAssertEqual(viewModel.query.value.isEmpty, true)
         XCTAssertEqual(viewModel.member(at: 0), expectedCompany.members?[0])
     }
     
-    func test_nameFilter() {
-        
-        let search = "a"
-        viewModel.filter = search
-        let expectedMembers = companies[0].members?.filter { $0.fullName.lowercased().contains(search.lowercased()) }
-        
-        XCTAssertEqual(viewModel.filter.isEmpty, false)
-        XCTAssertEqual(viewModel.memberCount, expectedMembers?.count)
-        XCTAssertEqual(viewModel.member(at: 0), expectedMembers?[0])
-    }
-
     func test_filter() {
+        let txt = "l"
+        viewModel.query.accept(txt)
         
-        let search = "30"
-        viewModel.filter = search
-        let expectedMembers = companies[0].members?.filter { String($0.age) == search }
+        XCTAssertEqual(viewModel.query.value.isEmpty, false)
         
-        XCTAssertEqual(viewModel.filter.isEmpty, false)
-        XCTAssertEqual(viewModel.memberCount, expectedMembers?.count)
-        XCTAssertEqual(viewModel.member(at: 0), expectedMembers?[0])
+        let expected = companies[0].members?.filter { $0.fullName.lowercased().contains(txt.lowercased()) }
+        XCTAssertEqual(viewModel.member(at: 0), expected?[0])
     }
     
-    func test_dataUpdateClosure() {
-        var dataUpdateClosureCalled: Int = 0
+    func test_sortFeature() {
+        let sortOption = SortOptions.ageDescending
+        viewModel.sortBy.accept(sortOption)
         
-        viewModel.dataUpdateClosure = {
-            dataUpdateClosureCalled += 1
-        }
-        
-        XCTAssertNotNil(viewModel.dataUpdateClosure)
-        XCTAssertEqual(viewModel.filter.isEmpty, true)
-        
-        viewModel.filter = "A"
-        viewModel.reloadData()
-        viewModel.filter = "b"
-        
-        let expected = expectation(description: String(#function))
-        invoke(after: 5) {
-            expected.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5) { error in
-            XCTAssertEqual(dataUpdateClosureCalled, 3)
-        }
+        let expected = companies[0].members?.sorted(by: { $0.age > $1.age })
+        XCTAssertEqual(viewModel.member(at: 0), expected?[0])
     }
     
     func testPerformanceExample() {

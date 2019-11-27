@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084B5135238ECDBF00CCAE43 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084B5133238ECDBF00CCAE43 /* RxBlocking.framework */; };
+		084B5136238ECDBF00CCAE43 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084B5134238ECDBF00CCAE43 /* RxTest.framework */; };
+		084B513B238ECDF800CCAE43 /* RxBlocking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 084B5133238ECDBF00CCAE43 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		084B513C238ECDF800CCAE43 /* RxTest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 084B5134238ECDBF00CCAE43 /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0899628B238D883A0035A15D /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628A238D883A0035A15D /* StoreProtocol.swift */; };
 		0899628D238D88F20035A15D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628C238D88F20035A15D /* Store.swift */; };
 		08996290238D8AB10035A15D /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */; };
@@ -33,7 +37,6 @@
 		46173B0B238D33B200A49C53 /* CompanyViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */; };
 		46173B0F238D3B6800A49C53 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 46173B0E238D3B6800A49C53 /* data.json */; };
 		46173B11238D3B9000A49C53 /* MockClubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B10238D3B9000A49C53 /* MockClubService.swift */; };
-		46173B13238D3C3D00A49C53 /* MockCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */; };
 		46173B16238D3E2600A49C53 /* CompanyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46173B15238D3E2600A49C53 /* CompanyExtension.swift */; };
 		46912EBB238E24220091C6E6 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912EBA238E24220091C6E6 /* MemberViewController.swift */; };
 		46912EBD238E26D20091C6E6 /* MemberViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46912EBC238E26D20091C6E6 /* MemberViewModelProtocol.swift */; };
@@ -72,6 +75,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		084B5132238EC7D900CCAE43 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				084B513B238ECDF800CCAE43 /* RxBlocking.framework in CopyFiles */,
+				084B513C238ECDF800CCAE43 /* RxTest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0899629C238D95C90035A15D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,6 +105,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		084B5133238ECDBF00CCAE43 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		084B5134238ECDBF00CCAE43 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		0899628A238D883A0035A15D /* StoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
 		0899628C238D88F20035A15D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
@@ -122,7 +138,6 @@
 		46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModelProtocol.swift; sourceTree = "<group>"; };
 		46173B0E238D3B6800A49C53 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		46173B10238D3B9000A49C53 /* MockClubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClubService.swift; sourceTree = "<group>"; };
-		46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCompanyViewController.swift; sourceTree = "<group>"; };
 		46173B15238D3E2600A49C53 /* CompanyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyExtension.swift; sourceTree = "<group>"; };
 		46912EBA238E24220091C6E6 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		46912EBC238E26D20091C6E6 /* MemberViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -157,6 +172,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084B5135238ECDBF00CCAE43 /* RxBlocking.framework in Frameworks */,
+				084B5136238ECDBF00CCAE43 /* RxTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,8 +190,8 @@
 		0899628E238D8A930035A15D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */,
 				46912EC4238E407B0091C6E6 /* StringExtensions.swift */,
+				0899628F238D8AB10035A15D /* UserDefaultsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +199,8 @@
 		08996291238D8D990035A15D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				084B5133238ECDBF00CCAE43 /* RxBlocking.framework */,
+				084B5134238ECDBF00CCAE43 /* RxTest.framework */,
 				46912ED5238E7B3A0091C6E6 /* RxCocoa.framework */,
 				46912ED6238E7B3A0091C6E6 /* RxRelay.framework */,
 				46912ED4238E7B3A0091C6E6 /* RxSwift.framework */,
@@ -197,8 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				0899628E238D8A930035A15D /* Extensions */,
-				08E7063E238D66F300FB93A9 /* Utilities.swift */,
 				46912ED2238E58CD0091C6E6 /* SortOptions.swift */,
+				08E7063E238D66F300FB93A9 /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -207,8 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				08E70641238D687F00FB93A9 /* CompanyCell.swift */,
-				0899629D238DA9820035A15D /* ShadowView.swift */,
 				46912EC2238E2FAF0091C6E6 /* MemberCell.swift */,
+				0899629D238DA9820035A15D /* ShadowView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -238,13 +257,13 @@
 			isa = PBXGroup;
 			children = (
 				08E7063D238D65A600FB93A9 /* Helpers */,
+				46173AF7238D273400A49C53 /* Models */,
 				46173AFD238D28BC00A49C53 /* Networking */,
 				46173AFC238D28AA00A49C53 /* Protocols */,
 				46173AFB238D277900A49C53 /* Resources */,
-				46173AF8238D274200A49C53 /* ViewModels */,
-				46173AF7238D273400A49C53 /* Models */,
-				46173AF6238D272500A49C53 /* Views */,
 				46173AF5238D264600A49C53 /* Supporting Files */,
+				46173AF8238D274200A49C53 /* ViewModels */,
+				46173AF6238D272500A49C53 /* Views */,
 			);
 			path = ClubHouse;
 			sourceTree = "<group>";
@@ -291,8 +310,8 @@
 		46173AF7238D273400A49C53 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				46173B00238D292500A49C53 /* Company.swift */,
 				46173B02238D296000A49C53 /* CodableError.swift */,
+				46173B00238D292500A49C53 /* Company.swift */,
 				46173B06238D302100A49C53 /* Member.swift */,
 			);
 			path = Models;
@@ -302,8 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				46173B08238D338000A49C53 /* CompanyViewModel.swift */,
-				0899628C238D88F20035A15D /* Store.swift */,
 				46912EBE238E26ED0091C6E6 /* MemberViewModel.swift */,
+				0899628C238D88F20035A15D /* Store.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -337,10 +356,10 @@
 		46173AFC238D28AA00A49C53 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
 				46173B0A238D33B200A49C53 /* CompanyViewModelProtocol.swift */,
-				0899628A238D883A0035A15D /* StoreProtocol.swift */,
 				46912EBC238E26D20091C6E6 /* MemberViewModelProtocol.swift */,
+				46173AFE238D28E100A49C53 /* ServiceProtocol.swift */,
+				0899628A238D883A0035A15D /* StoreProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -356,10 +375,9 @@
 		46173B14238D3C9200A49C53 /* CompanyView */ = {
 			isa = PBXGroup;
 			children = (
+				46173B15238D3E2600A49C53 /* CompanyExtension.swift */,
 				46173ADC238D25E700A49C53 /* CompanyViewProtocolTests.swift */,
 				46173B10238D3B9000A49C53 /* MockClubService.swift */,
-				46173B12238D3C3D00A49C53 /* MockCompanyViewController.swift */,
-				46173B15238D3E2600A49C53 /* CompanyExtension.swift */,
 				46912ECB238E454E0091C6E6 /* MockStore.swift */,
 			);
 			path = CompanyView;
@@ -368,8 +386,8 @@
 		46912EC6238E42F60091C6E6 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */,
 				46912ECD238E483C0091C6E6 /* MemberExtension.swift */,
+				46912EC7238E434E0091C6E6 /* MemberViewModelTest.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -402,6 +420,7 @@
 				46173AD4238D25E700A49C53 /* Sources */,
 				46173AD5238D25E700A49C53 /* Frameworks */,
 				46173AD6238D25E700A49C53 /* Resources */,
+				084B5132238EC7D900CCAE43 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -535,7 +554,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46173B13238D3C3D00A49C53 /* MockCompanyViewController.swift in Sources */,
 				46173B16238D3E2600A49C53 /* CompanyExtension.swift in Sources */,
 				46912EC8238E434E0091C6E6 /* MemberViewModelTest.swift in Sources */,
 				46912ECE238E483C0091C6E6 /* MemberExtension.swift in Sources */,
@@ -753,6 +771,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ClubHouseTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -775,6 +797,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48346ETV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ClubHouseTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
